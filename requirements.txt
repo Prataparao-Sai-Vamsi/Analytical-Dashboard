@@ -7,3 +7,4 @@ Werkzeug==0.15.5
 numpy==1.20.2
 matplotlib>=1.4.3
 pandas==1.2.4
+openpyxl==3.0.7
