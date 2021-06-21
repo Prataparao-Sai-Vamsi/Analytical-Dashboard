@@ -33,7 +33,7 @@ def upload_image():
                 ls=1
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config["IMAGE_UPLOADS"], filename))
-                print("File Saved")
+                #print("File Saved")
                 try:
                     if filename.rsplit(".", 1)[1]=="xlsx":
                         data = pd.read_excel('files_uploaded/'+filename,engine='openpyxl')
@@ -42,27 +42,27 @@ def upload_image():
                         sec.plot.bar(figsize=(20,10))
                         plt.savefig('plot.png',dpi=400) 
                         plt.show()  
-                        print("Image saved") 
+                        #print("Image saved") 
                     if filename.rsplit(".", 1)[1]=="csv":
                         data = pd.read_csv('files_uploaded/'+filename)
                         sec = data.head(62)
                         plt.rcParams['figure.figsize']=(10,6)
                         sec.plot.bar(figsize=(20,10))
                         plt.savefig('plot.png',dpi=400)   
-                        print("Image saved")
+                        #print("Image saved")
                         plt.show() 
                 except:
                     ls=2
-                    print("Upload a proper file")
+                    #print("Upload a proper file")
             else:
                 ls =0
-                print("That file extension is not allowed")
+                #print("That file extension is not allowed")
                 return redirect(request.url)
     return render_template("index.html",value = 'plot.png')
 
 str = os.getcwd()
 app.config["CLIENT_IMAGES"] = str.replace("\\","\\\\")
-print(app.config["CLIENT_IMAGES"])
+#print(app.config["CLIENT_IMAGES"])
 
 @app.route("/download/<image_name>")
 def dowmload(image_name):
